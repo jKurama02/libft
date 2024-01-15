@@ -1,29 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anmedyns <anmedyns@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 17:26:04 by anmedyns          #+#    #+#             */
-/*   Updated: 2024/01/14 16:06:33 by anmedyns         ###   ########.fr       */
+/*   Created: 2024/01/12 16:17:07 by anmedyns          #+#    #+#             */
+/*   Updated: 2024/01/12 17:03:49 by anmedyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+int	nbr_len(int n)
 {
-	unsigned int	i;
+	int	len;
 
-	i = 0;
-	while (s[i])
+	len = 0;
+	while (n)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
+		n /= 10;
+		len++;
 	}
-	if (s[i] == (char) c)
-		return ((char *)&s[i]);
-	return (0);
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		len;
+
+	len = nbr_len(n);
+	str = malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
+	str[len] = '\0';
+	if (n == 0)
+		str[0] = 48;
+	if (n < 0)
+	{
+		n *= -1;
+		str[0] = '-';
+		len += 1;
+	}
+	while (n)
+	{
+		len--;
+		str[len] = (n % 10) + 48;
+		n = n / 10;
+	}
+	return (str);
 }
