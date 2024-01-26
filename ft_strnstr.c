@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmedyns <anmedyns@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:00:13 by anmedyns          #+#    #+#             */
 /*   Updated: 2024/01/14 17:14:29 by anmedyns         ###   ########.fr       */

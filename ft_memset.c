@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmedyns <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 13:42:38 by anmedyns          #+#    #+#             */
 /*   Updated: 2024/01/10 13:44:01 by anmedyns         ###   ########.fr       */

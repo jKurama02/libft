@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmedyns <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:03:41 by anmedyns          #+#    #+#             */
 /*   Updated: 2024/01/10 14:06:37 by anmedyns         ###   ########.fr       */

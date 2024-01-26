@@ -3,51 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmedyns <anmedyns@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 16:17:07 by anmedyns          #+#    #+#             */
-/*   Updated: 2024/01/12 17:03:49 by anmedyns         ###   ########.fr       */
+/*   Created: 2024/01/09 14:36:36 by anmedyns          #+#    #+#             */
+/*   Updated: 2024/01/09 14:36:38 by anmedyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	nbr_len(int n)
+static int	num_digit(long num)
 {
-	int	len;
+	int	cur;
 
-	len = 0;
-	while (n)
+	cur = 0;
+	if (num == 0)
+		return (1);
+	if (num < 0)
+		cur++;
+	while (num != 0)
 	{
-		n /= 10;
-		len++;
+		num = num / 10;
+		cur++;
 	}
-	return (len);
+	return (cur);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		len;
+	long	len;
+	long	nl;
+	char	*result;
 
-	len = nbr_len(n);
-	str = malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
-		return (NULL);
-	str[len] = '\0';
-	if (n == 0)
-		str[0] = 48;
+	len = num_digit(n);
+	nl = n;
 	if (n < 0)
+		nl *= -1;
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
+		return (NULL);
+	result[len] = 0;
+	if (nl == 0)
+		result[0] = '0';
+	else
 	{
-		n *= -1;
-		str[0] = '-';
-		len += 1;
+		while (len--, nl != 0)
+		{
+			result[len] = (nl % 10) + '0';
+			nl = (nl - (nl % 10)) / 10;
+		}
+		if (n < 0)
+			result[len] = '-';
 	}
-	while (n)
-	{
-		len--;
-		str[len] = (n % 10) + 48;
-		n = n / 10;
-	}
-	return (str);
+	return (result);
 }

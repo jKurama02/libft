@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmedyns <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:09:45 by anmedyns          #+#    #+#             */
 /*   Updated: 2024/01/10 14:09:58 by anmedyns         ###   ########.fr       */
@@ -16,6 +16,5 @@ int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c += 32);
-	else
-		return (c);
+	return (c);
 }
