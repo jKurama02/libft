@@ -12,61 +12,93 @@
 
 #include "libft.h"
 
-static int	numwords(char const *s, char c)
+static char	**free_array(char **ptr, int i)
 {
-	int	cur;
-	int	word_num;
-
-	cur = 0;
-	word_num = 0;
-	while (s[cur] != 0)
+	while (i > 0)
 	{
-		if (s[cur] != c && (s[cur + 1] == c || s[cur + 1] == 0))
-			word_num++;
-		cur++;
+		i--;
+		free(ptr[i]);
 	}
-	return (word_num);
+	free(ptr);
+	return (0);
 }
 
-static int	split_words(char **result, char const *s, char c, int word)
+static int	ft_count_words(char const *str, char c)
 {
-	int		start_cur;
-	int		end_cur;
+	int	i;
+	int	count;
 
-	end_cur = 0;
-	start_cur = 0;
-	while (s[end_cur])
+	i = 0;
+	count = 0;
+	while (str[i] != '\0')
 	{
-		if (s[end_cur] == c || s[end_cur] == 0)
-			start_cur = end_cur + 1;
-		if (s[end_cur] != c && (s[end_cur + 1] == c || s[end_cur + 1] == 0))
+		if (str[i] == c)
+			i++;
+		else
 		{
-			result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
-			if (!result[word])
-			{
-				while (word++)
-					free(result[word]);
-				return (0);
-			}
-			ft_strlcpy(result[word], (s + start_cur), end_cur - start_cur + 2);
-			word++;
+			count++;
+			while (str[i] && str[i] != c)
+				i++;
 		}
-		end_cur++;
 	}
-	result[word] = 0;
-	return (1);
+	return (count);
+}
+
+static char	*ft_putword(char *word, char const *s, int i, int word_len)
+{
+	int	j;
+
+	j = 0;
+	while (word_len > 0)
+	{
+		word[j] = s[i - word_len];
+		j++;
+		word_len--;
+	}
+	word[j] = '\0';
+	return (word);
+}
+
+static char	**ft_split_words(char const *s, char c, char **s2, int num_words)
+{
+	int	i;
+	int	word;
+	int	word_len;
+
+	i = 0;
+	word = 0;
+	word_len = 0;
+	while (word < num_words)
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		while (s[i] && s[i] != c)
+		{
+			i++;
+			word_len++;
+		}
+		s2[word] = (char *)malloc(sizeof(char) * (word_len + 1));
+		if (!s2)
+			return (free_array(s2, word));
+		ft_putword(s2[word], s, i, word_len);
+		word_len = 0;
+		word++;
+	}
+	s2[word] = 0;
+	return (s2);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
+	char			**s2;
+	unsigned int	num_words;
 
 	if (!s)
-		return (NULL);
-	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
-	if (!result)
-		return (NULL);
-	if (!split_words(result, s, c, 0))
-		return (NULL);
-	return (result);
+		return (0);
+	num_words = ft_count_words(s, c);
+	s2 = (char **)malloc(sizeof(char *) * (num_words + 1));
+	if (!s2)
+		return (0);
+	s2 = ft_split_words(s, c, s2, num_words);
+	return (s2);
 }

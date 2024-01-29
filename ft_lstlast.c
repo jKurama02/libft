@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: anmedyns <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 16:34:55 by anmedyns          #+#    #+#             */
-/*   Updated: 2024/01/12 16:21:39 by anmedyns         ###   ########.fr       */
+/*   Created: 2024/01/29 22:10:30 by anmedyns          #+#    #+#             */
+/*   Updated: 2024/01/29 22:12:05 by anmedyns         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
-	{
 		return (NULL);
-	}
 	while (lst->next != NULL)
 	{
 		lst = lst->next;
