@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,17 @@
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstadd_back(t_list	**lst, t_list	*new)
 {
-	t_list	*new_node;
+	t_list	*last;
 
-	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
 	{
-		return (NULL);
+		last = ft_lstlast(*lst);
+		last->next = new;
 	}
-	new_node->content = content;
-	new_node->next = NULL;
-	return (new_node);
 }

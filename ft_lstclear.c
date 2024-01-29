@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anmedyns <anmedyns@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,22 @@
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list	*new_node;
+	t_list	*current_node;
+	t_list	*tmp;
 
-	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
+	if (lst == NULL || del == NULL)
 	{
-		return (NULL);
+		return ;
 	}
-	new_node->content = content;
-	new_node->next = NULL;
-	return (new_node);
+	current_node = *lst;
+	while (current_node != NULL)
+	{
+		tmp = current_node;
+		current_node = current_node->next;
+		del(tmp->content);
+		free(tmp);
+	}
+	*lst = NULL;
 }
